@@ -1,25 +1,42 @@
 package br.com.fetchpictures.environment.network.retrofit.model
 
 import br.com.fetchpictures.model.MediaImage
+import com.google.gson.annotations.SerializedName
 import retrofit2.http.Field
 
+data class ShutterResponse(
+    @SerializedName("page")
+    val page: Int,
+
+    @SerializedName("data")
+    val images: List<ShutterMediaImage>
+)
+
 data class ShutterMediaImage(
-    @Field("assets/preview_1000/url")
-    val url: String,
-    @Field("assets/preview_1000/width")
-    val width: Int,
-    @Field("assets/preview_1000/height")
-    val height: Int,
-    @Field("description")
-    val description: String
+    @SerializedName("id")
+    val id: String,
+
+    @SerializedName("description")
+    val description: String,
+
+    @SerializedName("assets")
+    val assets: Map<String, Assets>
+
 ) {
     fun parseTo(): MediaImage {
+        val defaultAsset = Assets("")
+        val lowQuality = assets["preview"] ?: defaultAsset
+        val highQuality = assets["huge_thumb"] ?: defaultAsset
+
         return MediaImage(
             description,
-            width,
-            height,
-            url
+            lowQuality.url,
+            highQuality.url
         )
     }
-
 }
+
+data class Assets (
+    @Field("url")
+    val url: String
+)

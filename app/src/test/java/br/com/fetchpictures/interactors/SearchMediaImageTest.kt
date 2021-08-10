@@ -8,7 +8,6 @@ import org.junit.Before
 import org.junit.Test
 
 class SearchMediaImageTest {
-
     private lateinit var searchProvider: SearchProvider
     private lateinit var searchMediaImage: SearchMediaImage
 
