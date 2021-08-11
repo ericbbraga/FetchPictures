@@ -12,6 +12,7 @@ import org.junit.After
 import org.junit.Assert
 import org.junit.Before
 import org.junit.Test
+import retrofit2.HttpException
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
@@ -35,13 +36,16 @@ class ShutterStockSearchProviderInstrumentedTest {
             .client(OkHttpClient())
             .build()
 
-        shutterStockSearchProvider = ShutterStockSearchProvider(retrofit)
+        val stockService = retrofit.create(ShutterStockService::class.java)
+
+        shutterStockSearchProvider = ShutterStockSearchProvider(stockService)
         context = InstrumentationRegistry.getInstrumentation().context
     }
 
     @Test(expected = Exception::class)
     fun whenAnErrorOccursOnServerConnectionAnExceptionShouldOccurs() {
-        mockWebServer.enqueue(MockResponse().setResponseCode(500))
+        val internalServerErrorCode = 500
+        mockWebServer.enqueue(MockResponse().setResponseCode(internalServerErrorCode))
         searchByExecute()
     }
 

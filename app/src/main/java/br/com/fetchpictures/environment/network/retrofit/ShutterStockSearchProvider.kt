@@ -2,10 +2,9 @@ package br.com.fetchpictures.environment.network.retrofit
 
 import br.com.fetchpictures.interactors.SearchProvider
 import br.com.fetchpictures.model.MediaImage
-import retrofit2.Retrofit
-import java.lang.IllegalArgumentException
 
-class ShutterStockSearchProvider(private val retrofit: Retrofit) : BaseRetrofitProvider(),
+class ShutterStockSearchProvider(private val stockService: ShutterStockService) :
+    BaseRetrofitProvider(),
     SearchProvider {
 
     override fun searchBy(query: String, page: Int, limit: Int): List<MediaImage> {
@@ -22,7 +21,6 @@ class ShutterStockSearchProvider(private val retrofit: Retrofit) : BaseRetrofitP
             throw IllegalArgumentException("Out of range limit: Should be Between 1 and 100")
         }
 
-        val stockService = retrofit.create(ShutterStockService::class.java)
         val call = stockService.searchBy(query, page, limit)
 
         return execute(call,

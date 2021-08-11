@@ -1,7 +1,7 @@
 package br.com.fetchpictures.environment.network.retrofit
 
-import br.com.fetchpictures.environment.network.retrofit.model.ShutterResponse
 import br.com.fetchpictures.environment.network.retrofit.model.ShutterMediaImage
+import br.com.fetchpictures.environment.network.retrofit.model.ShutterResponse
 import io.mockk.every
 import io.mockk.mockk
 import org.junit.Assert
@@ -9,14 +9,12 @@ import org.junit.Before
 import org.junit.Test
 import retrofit2.Call
 import retrofit2.Response
-import retrofit2.Retrofit
 
 class ShutterStockSearchProviderTest {
     private lateinit var response: Response<ShutterResponse>
     private lateinit var call: Call<ShutterResponse>
     private lateinit var stockService: ShutterStockService
 
-    private lateinit var retrofit: Retrofit
     private lateinit var shutterProvider: ShutterStockSearchProvider
 
     private var query: String = "kite"
@@ -28,13 +26,11 @@ class ShutterStockSearchProviderTest {
         response = mockk()
         call = mockk()
         stockService = mockk()
-        retrofit = mockk()
 
         every { call.execute() }.returns(response)
         every { stockService.searchBy(any(), any(), any()) }.returns(call)
-        every { retrofit.create(ShutterStockService::class.java) }.returns( stockService )
 
-        shutterProvider = ShutterStockSearchProvider(retrofit)
+        shutterProvider = ShutterStockSearchProvider(stockService)
     }
 
     @Test(expected = Exception::class)

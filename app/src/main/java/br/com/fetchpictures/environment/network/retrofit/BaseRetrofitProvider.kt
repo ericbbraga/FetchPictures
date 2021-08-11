@@ -22,7 +22,7 @@ abstract class BaseRetrofitProvider {
                 onError(InvalidRetrofitResponse("Server error", response.code()))
             }
         } catch (ex: Exception) {
-            onError(InvalidRetrofitResponse("${ex.message}"))
+            onError(InvalidRetrofitResponse("error =${ex.javaClass} ${ex.message ?: ""}"))
         }
     }
 

@@ -1,0 +1,1 @@
+ext.token = new File("shutterstock.token").text.replace("\n", "")
