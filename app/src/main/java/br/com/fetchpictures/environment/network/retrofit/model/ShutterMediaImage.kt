@@ -25,7 +25,7 @@ data class ShutterMediaImage(
 ) {
     fun parseTo(): MediaImage {
         val defaultAsset = Assets("")
-        val lowQuality = assets["preview"] ?: defaultAsset
+        val lowQuality = assets["large_thumb"] ?: defaultAsset
         val highQuality = assets["huge_thumb"] ?: defaultAsset
 
         return MediaImage(

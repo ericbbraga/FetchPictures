@@ -12,6 +12,8 @@ import javax.inject.Singleton
     RetrofitModule::class,
     ShutterStockUrlModule::class,
     ViewModelsModule::class,
+    ImageLoaderModule::class,
+    ContextModule::class
 ])
 @Singleton
 interface MainComponent {

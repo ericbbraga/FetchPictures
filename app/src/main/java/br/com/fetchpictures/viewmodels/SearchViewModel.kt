@@ -1,12 +1,13 @@
 package br.com.fetchpictures.viewmodels
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import br.com.fetchpictures.interactors.SearchMediaImage
 import br.com.fetchpictures.model.MediaImage
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.runBlocking
+import kotlinx.coroutines.withContext
 
 class SearchViewModel(private val searchMediaImage: SearchMediaImage): ViewModel() {
 
@@ -18,8 +19,6 @@ class SearchViewModel(private val searchMediaImage: SearchMediaImage): ViewModel
 
     fun searchImagesBy(query: String) {
         runBlocking {
-            Log.i("here", "searchImagesBy")
-
             val response = withContext(Dispatchers.IO) {
                 searchMediaImage.exec(query, 1)
             }
