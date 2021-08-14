@@ -13,7 +13,8 @@ import javax.inject.Singleton
     ShutterStockUrlModule::class,
     ViewModelsModule::class,
     ImageLoaderModule::class,
-    ContextModule::class
+    ContextModule::class,
+    DatabaseModule::class
 ])
 @Singleton
 interface MainComponent {

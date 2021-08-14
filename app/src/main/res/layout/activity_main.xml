@@ -44,4 +44,15 @@
         app:layout_constraintBottom_toBottomOf="parent"
         tools:background="#C0C0C0"/>
 
+    <ProgressBar
+        android:id="@+id/middle_progressbar"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:indeterminateTint="#FFFFFF"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/viewImagesRecyclerView" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

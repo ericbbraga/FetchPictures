@@ -29,6 +29,7 @@ data class ShutterMediaImage(
         val highQuality = assets["huge_thumb"] ?: defaultAsset
 
         return MediaImage(
+            id,
             description,
             lowQuality.url,
             highQuality.url

@@ -6,6 +6,7 @@ import br.com.fetchpictures.environment.loaders.GlideImageLoader
 import dagger.Module
 import dagger.Provides
 
+
 @Module
 class ImageLoaderModule {
 
